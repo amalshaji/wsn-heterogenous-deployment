@@ -110,11 +110,7 @@ for z = 1 : ITERATIONS
     pause(0.01);
     clf(f);
     if mean(lifetimes) < prev_mean
-        saturation_count = saturation_count + 1;
-    end
-    if saturation_count >= 3
-        fprintf("Mean Saturation...\n");
-        break
+        saturation_count = sa
     end
     fprintf("Generation: %d, Current mean Lifetime: %.2f, Overall Best Lifetime: %d\n", z, mean(lifetimes), max(lifetime_hist));
     prev_mean = mean(lifetimes);
@@ -125,7 +121,6 @@ fprintf("Initial Energy       : %.2f\n", initial_energy(1));
 fprintf("Initial Lifetime     : %d\n", initial_lifetime);
 %fprintf("Initial Total Energy : %d\n", sum(initial_energy));
 fprintf("Final   Lifetime     : %d\n", max(lifetime_hist));
-fprintf("Generation           : %d\n", z);
 fprintf("******************************************************************\n");
 
 plot_nodes(x, y, SinkX, SinkY, hetero_nodes_position);

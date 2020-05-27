@@ -9,3 +9,4 @@ fprintf(fileID, "%f %f\n", xy);
 fclose(fileID);
 
 fprintf("New deployment saved to `fixed_deployment.txt`\n")
+plot_nodes(xy(:, 1), xy(:, 2), 50, 50, [50 50]);

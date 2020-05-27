@@ -2,7 +2,7 @@ function [] = plot_nodes(x, y, SinkX, SinkY, hnodes)
 %PLOT_NODES Summary of this function goes here
 %   Detailed explanation goes here
     p = [x(:), y(:)];
-    h = [hnodes(:, 1), hnodes(:, 2)];
+    %h = [hnodes(:, 1), hnodes(:, 2)];
     scatter(p(:,1), p(:,2), 'MarkerEdgeColor','b','MarkerFaceColor','c','LineWidth',1.5)
     labels = num2str((1:size(p,1))','%d');    %'
     text(p(:,1), p(:,2), labels, 'horizontal','left', 'vertical','bottom')
