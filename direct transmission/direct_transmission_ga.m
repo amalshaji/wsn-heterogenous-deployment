@@ -15,7 +15,7 @@ prev_mean = -inf;
 prompt = {'Number of Sensor Nodes', 'Number of Heterogenous Nodes', 'Initial energy of each sensor Node', 'Initial energy of each heterogenous Node', 'Size of Terrain(x)', 'X coordinate of Sink', 'Y coordinate of Sink', 'Total Population size:','Maximum Iterations:', 'Random Number generator Seed:', '0 for fixed deployment, 1 for random'};
 title = 'Direct Transmission Genetic Algorithm';
 dims = [1 70];
-definput = {'30', '8', '0.5', '1.5', '100', '50', '50', '1000', '5', '1', '1'};
+definput = {'30', '6', '0.5', '1.5', '100', '50', '50', '1000', '5', '1', '1'};
 answer = inputdlg(prompt,title,dims,definput);
 NODES = str2double(answer{1});
 HET_NODES = str2double(answer{2});
@@ -105,14 +105,14 @@ for z = 1 : ITERATIONS
     %    hetero_nodes_position(i, 1) = x(heter_nodes_index(min_index, i));
     %    hetero_nodes_position(i, 2) = y(heter_nodes_index(min_index, i));
     %end
-    plot_nodes(x, y, SinkX, SinkY, hetero_nodes_position);
+    plot_nodes(x, y, SinkX, SinkY, hetero_nodes_position, z);
     %title(num2str(z));
     pause(0.01);
     clf(f);
     if mean(lifetimes) < prev_mean
         saturation_count = saturation_count + 1;
     end
-    if saturation_count >= 3
+    if saturation_count >= 5
         fprintf("Mean Saturation...\n");
         break
     end
@@ -128,6 +128,6 @@ fprintf("Final   Lifetime     : %d\n", max(lifetime_hist));
 fprintf("Generation           : %d\n", z);
 fprintf("******************************************************************\n");
 
-plot_nodes(x, y, SinkX, SinkY, hetero_nodes_position);
+plot_nodes(x, y, SinkX, SinkY, hetero_nodes_position, z);
 %figure;
 %plot(1:size(lifetime_hist, 2), log(lifetime_hist));

@@ -1,4 +1,4 @@
-function [] = plot_nodes(x, y, SinkX, SinkY, hnodes)
+function [] = plot_nodes(x, y, SinkX, SinkY, hnodes, z)
 %PLOT_NODES Summary of this function goes here
 %   Detailed explanation goes here
     p = [x(:), y(:)];
@@ -9,5 +9,6 @@ function [] = plot_nodes(x, y, SinkX, SinkY, hnodes)
     hold on
     plot(SinkX,SinkY,'d','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',20);
     scatter(hnodes(:,1), hnodes(:,2), 'MarkerEdgeColor','r','MarkerFaceColor','r','LineWidth',1.5)
+    title(['Generation: ',sprintf('%d',z)]);
 end
 

@@ -1,7 +1,7 @@
 function [chromosomes] = crossover(chromosomes, POPULATION_SIZE, VARIABLES)
 %CROSSOVER Summary of this function goes here
 %   Detailed explanation goes here
-    cr = 0.25;
+    cr = 0.1;
     index = [];
     R = rand(1, POPULATION_SIZE);
     for i = 1:POPULATION_SIZE
