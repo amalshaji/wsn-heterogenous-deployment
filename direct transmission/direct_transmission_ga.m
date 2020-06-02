@@ -12,10 +12,10 @@ min_index_lifetime = -1;
 final_energy = 15;
 prev_mean = -inf;
 
-prompt = {'Number of Sensor Nodes', 'Number of Heterogenous Nodes', 'Initial energy of each sensor Node', 'Initial energy of each heterogenous Node', 'Size of Terrain(x)', 'X coordinate of Sink', 'Y coordinate of Sink', 'Total Population size:','Maximum Iterations:', 'Random Number generator Seed:', '0 for fixed deployment, 1 for random'};
+prompt = {'Number of Sensor Nodes', 'Number of Heterogenous Nodes', 'Initial energy of each sensor Node', 'Initial energy of each heterogenous Node', 'Size of Terrain(x)', 'X coordinate of Sink', 'Y coordinate of Sink', 'Total Population size:','Maximum Iterations:', 'Random Number generator Seed:', '0 for fixed deployment, 1 for random', '0 for direct, 1 for multihop'};
 title = 'Direct Transmission Genetic Algorithm';
 dims = [1 70];
-definput = {'30', '6', '0.5', '1.5', '100', '50', '50', '1000', '5', '1', '1'};
+definput = {'30', '6', '0.5', '1.5', '100', '50', '50', '1000', '5', '1', '1', '0'};
 answer = inputdlg(prompt,title,dims,definput);
 NODES = str2double(answer{1});
 HET_NODES = str2double(answer{2});
@@ -28,6 +28,7 @@ POPULATION_SIZE = str2double(answer{8});
 ITERATIONS = str2double(answer{9});
 RNG_SEED = str2double(answer{10});
 DEP_TYPE = str2double(answer{11});
+HOP_TYPE = str2double(answer{12});
 
 relay_energy = SENSOR_ENERGY + HETER_ENERGY;
 
@@ -40,6 +41,9 @@ else
     NODES = 40;
     TERRAIN_SIZE = 100;
 end
+
+n = size(x, 2);
+mv(1:n) = 1;
 
 initial_energy = en;
 [lifetime1, en2] = direct_transmission(x, y, en, SinkX, SinkY);
