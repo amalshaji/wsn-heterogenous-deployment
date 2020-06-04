@@ -12,6 +12,7 @@ function [lifetime, en] = multihop_transmission(x, y, en, SinkX, SinkY, nn_dist,
     Efs = 10*0.000000000001 ;% energy free space
     Emp = 0.0013*0.000000000001; %energy multi path
     Kbit = 2000; % size  
+    Eda=5*0.000000001; %Data Aggregation Energy
     
     d0 = sqrt(Efs / Emp);
     
@@ -23,9 +24,9 @@ function [lifetime, en] = multihop_transmission(x, y, en, SinkX, SinkY, nn_dist,
         Rounds = Rounds + 1;
         for i = 1 : n
             if (nn_dist(i) <= d0)
-                energy = mv(i) * Kbit * Elec + Efs * nn_dist(i) * Kbit + (mv(i)-1) * Kbit * Elec;
+                energy = mv(i) * Eda * Kbit + Efs * (nn_dist(i)^2) * Kbit + (mv(i)-1) * Kbit * Elec;
             else
-                energy = mv(i) * Kbit * Elec + Emp * nn_dist(i) * Kbit + (mv(i)-1) * Kbit * Elec;                
+                energy = mv(i) * Eda * Kbit + Emp * (nn_dist(i)^4) * Kbit + (mv(i)-1) * Kbit * Elec;                
             end
             en(i) = en(i) - energy;
             if en(i) <= 0
