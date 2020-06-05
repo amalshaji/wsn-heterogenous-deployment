@@ -24,9 +24,9 @@ function [lifetime, en] = multihop_transmission(x, y, en, SinkX, SinkY, nn_dist,
         Rounds = Rounds + 1;
         for i = 1 : n
             if (nn_dist(i) <= d0)
-                energy = mv(i) * Eda * Kbit + Efs * (nn_dist(i)^2) * Kbit + (mv(i)-1) * Kbit * Elec;
+                energy = mv(i) * Eda * Kbit + Efs * (nn_dist(i)^2) * Kbit + (mv(i)-1) * Kbit * Elec + Kbit * Elec;
             else
-                energy = mv(i) * Eda * Kbit + Emp * (nn_dist(i)^4) * Kbit + (mv(i)-1) * Kbit * Elec;                
+                energy = mv(i) * Eda * Kbit + Emp * (nn_dist(i)^4) * Kbit + (mv(i)-1) * Kbit * Elec + Kbit * Elec;                
             end
             en(i) = en(i) - energy;
             if en(i) <= 0

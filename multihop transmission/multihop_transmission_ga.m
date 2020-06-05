@@ -15,7 +15,7 @@ prev_mean = -inf;
 prompt = {'Number of Sensor Nodes', 'Number of Heterogenous Nodes', 'Initial energy of each sensor Node', 'Initial energy of each heterogenous Node', 'Size of Terrain(x)', 'X coordinate of Sink', 'Y coordinate of Sink', 'Total Population size:','Maximum Iterations:', 'Random Number generator Seed:', '0 for fixed deployment, 1 for random'};
 title = 'Multihop Transmission Genetic Algorithm';
 dims = [1 70];
-definput = {'30', '6', '0.5', '1.5', '100', '50', '50', '1000', '5', '1', '1'};
+definput = {'30', '6', '0.5', '1.5', '100', '50', '50', '1000', '50', '1', '1'};
 answer = inputdlg(prompt,title,dims,definput);
 NODES = str2double(answer{1});
 HET_NODES = str2double(answer{2});
@@ -114,7 +114,7 @@ for z = 1 : ITERATIONS
     if mean(lifetimes) < prev_mean
         saturation_count = saturation_count + 1;
     end
-    if saturation_count >= 5
+    if saturation_count >= 10
         fprintf("Mean Saturation...\n");
         break
     end
