@@ -1,7 +1,7 @@
 % size of terrain        :100
 % number of sensor nodes : 40
 
-xy = rand(40, 2);
+xy = rand(50, 2);
 xy = xy.*100;
 
 fileID = fopen("fixed_deployment.txt", "w");

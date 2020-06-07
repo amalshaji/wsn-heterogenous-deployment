@@ -28,7 +28,7 @@ POPULATION_SIZE = str2double(answer{8});
 ITERATIONS = str2double(answer{9});
 RNG_SEED = str2double(answer{10});
 DEP_TYPE = str2double(answer{11});
-
+tic
 relay_energy = SENSOR_ENERGY + HETER_ENERGY;
 
 min_positions = zeros(1, HET_NODES);
@@ -126,7 +126,7 @@ fprintf("Initial Energy       : %.2f\n", initial_energy(1));
 fprintf("Initial Lifetime     : %d\n", initial_lifetime);
 %fprintf("Initial Total Energy : %d\n", sum(initial_energy));
 fprintf("Final   Lifetime     : %d\n", max(lifetime_hist));
-fprintf("Generation           : %d\n", z);
+fprintf('Time Taken           : %.2f seconds. \n',toc')
 fprintf("******************************************************************\n");
 
 plot_nodes(x, y, SinkX, SinkY, hetero_nodes_position, z);

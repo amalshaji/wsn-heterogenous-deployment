@@ -4,11 +4,11 @@ function [x, y, en] = fixed_deployment(InitialEnergy)
     fileID = fopen("fixed_deployment.txt", "r");
     formatSpec = "%f";
     A = fscanf(fileID, formatSpec);
-    A = reshape(A, [40, 2]);
+    A = reshape(A, [50, 2]);
     x = A(:, 1);
-    x = reshape(x, [1, 40]);
+    x = reshape(x, [1, 50]);
     y = A(:, 2);
-    y = reshape(y, [1, 40]);
+    y = reshape(y, [1, 50]);
     for i = 1 : size(A, 1)
         en(i) = InitialEnergy; % Energy array depicting each node's energy consumption
     end
