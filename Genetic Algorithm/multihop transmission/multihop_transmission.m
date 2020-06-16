@@ -4,7 +4,6 @@ function [lifetime, en] = multihop_transmission(x, y, en, SinkX, SinkY, nn_dist,
     lifetime = 0;
     n = size(x, 2);
     energy = 0;
-    dist_direct(1 : n) = 0;
     dead = 0;
     Rounds = 0;
     
@@ -15,10 +14,6 @@ function [lifetime, en] = multihop_transmission(x, y, en, SinkX, SinkY, nn_dist,
     Eda=5*0.000000001; %Data Aggregation Energy
     
     d0 = sqrt(Efs / Emp);
-    
-    for i = 1 : n
-            dist_direct(i)= sqrt( (x(i)-SinkX)^2 + (y(i)-SinkY)^2 );
-    end
     
     while dead == 0
         Rounds = Rounds + 1;

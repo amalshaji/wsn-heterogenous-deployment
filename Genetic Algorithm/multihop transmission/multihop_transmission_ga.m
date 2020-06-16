@@ -28,7 +28,7 @@ POPULATION_SIZE = str2double(answer{8});
 ITERATIONS = str2double(answer{9});
 RNG_SEED = str2double(answer{10});
 DEP_TYPE = str2double(answer{11});
-
+tic
 relay_energy = SENSOR_ENERGY + HETER_ENERGY;
 
 min_positions = zeros(1, HET_NODES);
@@ -41,8 +41,10 @@ else
     TERRAIN_SIZE = 100;
 end
 
+nn_mv_tic = tic;
 [nn, nn_dist] = calculate_nearest_neighbour(x, y, SinkX, SinkY);
 mv = calculate_multiplier(size(x, 2), nn);
+fprintf('Time Taken to calculate nn&mv : %.2f seconds. \n',toc(nn_mv_tic));
 
 initial_energy = en;
 [lifetime1, en2] = multihop_transmission(x, y, en, SinkX, SinkY, nn_dist, mv);
@@ -108,26 +110,27 @@ for z = 1 : ITERATIONS
     %    hetero_nodes_position(i, 2) = y(heter_nodes_index(min_index, i));
     %end
     plot_nodes(x, y, SinkX, SinkY, hetero_nodes_position, z);
-    %title(num2str(z));
+    % title(num2str(z));
     pause(0.01);
     clf(f);
     if mean(lifetimes) < prev_mean
         saturation_count = saturation_count + 1;
     end
-    if saturation_count >= 10
+    if saturation_count >= 5
         fprintf("Mean Saturation...\n");
         break
     end
     fprintf("Generation: %d, Current mean Lifetime: %.2f, Overall Best Lifetime: %d\n", z, mean(lifetimes), max(lifetime_hist));
     prev_mean = mean(lifetimes);
 end
-close all;
+% close all;
 fprintf("******************************************************************\n");
 fprintf("Initial Energy       : %.2f\n", initial_energy(1));
 fprintf("Initial Lifetime     : %d\n", initial_lifetime);
 %fprintf("Initial Total Energy : %d\n", sum(initial_energy));
 fprintf("Final   Lifetime     : %d\n", max(lifetime_hist));
 fprintf("Generation           : %d\n", z);
+fprintf('Time Taken           : %.2f seconds. \n',toc')
 fprintf("******************************************************************\n");
 
 plot_nodes(x, y, SinkX, SinkY, hetero_nodes_position, z);
