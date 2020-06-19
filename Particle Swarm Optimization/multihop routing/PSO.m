@@ -1,9 +1,12 @@
-%
+% Particle swarm optimization 
+% References :
+%    Copyright (c) 2015, Yarpiz
+%    All rights reserved.
+
+
 function out = PSO(problem, params,x,y,SinkX,SinkY,n,nod)
 
-    %% Problem Definiton
-     % Cost Function
-
+   
     nVar = problem.nVar;        % Number of Unknown (Decision) Variables
 
     VarSize = [1 nVar];         % Matrix Size of Decision Variables

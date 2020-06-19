@@ -47,14 +47,6 @@ out = PSO(problem, params,x,y,SinkX,SinkY,n,nod);
 BestSol(i) = out.BestSol;
 BestCosts = out.BestCosts;
 nod=[nod out.nod]
-%% Results
-
-% figure;
-% plot(BestCosts, 'LineWidth', 2);
-% semilogy(BestCosts, 'LineWidth', 2);
-% xlabel('Iteration');
-% ylabel('Best Cost');
-% grid on;
 
 
 end
@@ -74,10 +66,8 @@ f1=figure('Name','Random Deployment using PSO',...
             'NumberTitle','off');
 for k=1:n
     figure (f1)
-    %plot(x(k),y(k),'O');
-    %col = linspace(1,10,length(x));
     scatter(SinkX,SinkY,190,'diamond','filled');
-    reg_node=scatter(x(k),y(k),70,'MarkerEdgeColor',[0 0.5 0.5],...
+    reg_node=scatter(x(k),y(k),40,'MarkerEdgeColor',[0 0.5 0.5],...
                      'MarkerFaceColor',[0 .7 .7],'LineWidth',1.5);
     alpha(reg_node,0.45);
     xlim([0 breadth]);
@@ -87,7 +77,6 @@ end
 for k=1:hetero
     
     figure (f1)
-    %plot(x(k+n),y(k+n),'>');
     scatter(x(nod(k)),y(nod(k)),135,'hexagram','filled','MarkerEdgeColor',...
              [0 0 0],'LineWidth',.75);
     xlim([0 breadth]);
